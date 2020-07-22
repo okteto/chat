@@ -1,5 +1,5 @@
 name: web
-image: okteto.dev/rails-k8s-demo:dev
+image: okteto.dev/chat:dev
 command: bash
 workdir: /app
 forward:
@@ -11,7 +11,7 @@ resources:
     memory: 2Gi
 services:
   - name: sidekiq
-    image: okteto.dev/rails-k8s-demo:dev
+    image: okteto.dev/chat:dev
     mountpath: /app
 persistentVolume:
   enabled: true

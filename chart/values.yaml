@@ -1,5 +1,5 @@
 image:
-  repository: okteto.dev/rails-k8s-demo
+  repository: okteto.dev/chat
   tag: prod
 
 rails:
