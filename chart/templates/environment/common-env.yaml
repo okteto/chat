@@ -8,6 +8,3 @@ metadata:
 data:
   DATABASE_URL: postgresql://okteto:okteto@postgresql:5432/okteto
   REDIS_URL: redis://rails-k8s-demo-redis-master:6379/
-{{- range $key, $value := .Values.commonEnv }}
-  {{ $key }}: {{ $value | quote }}
-{{- end }}

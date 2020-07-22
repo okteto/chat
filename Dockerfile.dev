@@ -20,10 +20,12 @@ ENV PATH /app/bin:$PATH
 
 WORKDIR /app
 
-COPY Gemfile Gemfile.lock package.json yarn.lock ./
+COPY Gemfile Gemfile.lock ./
 
 RUN gem install bundler:$BUNDLER_VERSION && \
     bundle install
+
+COPY package.json yarn.lock ./
 
 RUN yarn install
 
