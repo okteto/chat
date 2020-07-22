@@ -5,7 +5,7 @@ Rails.application.configure do
   config.web_console.permissions = ["10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16"]
 
   # Sadly, not documented anywhere, but required since Rails 6
-  config.hosts << "rails-k8s-demo-pablo.monday.okteto.net"
+  config.hosts << ".monday.okteto.net"
   
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development

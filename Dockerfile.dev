@@ -1,6 +1,7 @@
+# syntax=docker/dockerfile:experimental
 FROM quay.io/lewagon/rails-base-chrome-imagemagick:dev
 
-ENV BUNDLER_VERSION=2.1.4
+ENV BUNDLER_VERSION=2.1.0
 
 COPY bashrc /root/.bashrc
 
@@ -22,7 +23,8 @@ WORKDIR /app
 
 COPY Gemfile Gemfile.lock ./
 
-RUN gem install bundler:$BUNDLER_VERSION && \
+RUN --mount=type=cache,target=/bundler gem update --system && \
+    gem install bundler:$BUNDLER_VERSION && \
     bundle install
 
 COPY package.json yarn.lock ./

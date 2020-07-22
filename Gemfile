@@ -48,6 +48,7 @@ end
 
 group :development do
   gem 'ruby-debug-ide', '~> 0.7.0'
+  gem 'debase'
 end
 
 group :test do

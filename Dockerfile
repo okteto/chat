@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:experimental
 FROM quay.io/lewagon/rails-base-chrome-imagemagick:dev
 
 ARG BUNDLER_VERSION
@@ -22,7 +23,7 @@ WORKDIR /app
 COPY Gemfile Gemfile.lock package.json yarn.lock ./
 
 # Upgrade RubyGems and install required Bundler version
-RUN gem update --system && \
+RUN --mount=type=cache,target=/bundler gem update --system && \
   gem install bundler:$BUNDLER_VERSION && \
   bundle config set deployment 'true' && \
   bundle config set without 'development test' && \

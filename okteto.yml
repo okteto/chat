@@ -1,5 +1,15 @@
 name: web
-image: okteto.dev/rails-k8s-demo:dev
+image:
+  name: okteto.dev/rails-k8s-demo:dev
+  dockerfile: Dockerfile.dev
+environment:
+  - NODE_ENV=development
+  - RAILS_ENV=development
+  # - BOOTSNAP_CACHE_DIR=/usr/local/bundle/bootsnap
+  # - WEBPACKER_DEV_SERVER_HOST=webpacker
+  # - WEB_CONCURRENCY=1
+  # - HISTFILE=/app/log/.bash_history
+  # - PSQL_HISTFILE=/app/log/.psql_history
 command: bash
 workdir: /app
 forward:
