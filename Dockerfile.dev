@@ -1,7 +1,6 @@
 FROM quay.io/lewagon/rails-base-chrome-imagemagick:dev
 
-ARG BUNDLER_VERSION
-ENV BUNDLER_VERSION=${BUNDLER_VERSION:-2.1.4}
+ENV BUNDLER_VERSION=2.1.4
 
 COPY bashrc /root/.bashrc
 
@@ -26,16 +25,6 @@ COPY Gemfile Gemfile.lock package.json yarn.lock ./
 RUN gem install bundler:$BUNDLER_VERSION && \
     bundle install
 
+RUN yarn install
+
 COPY . ./
-RUN mkdir log
-
-ENV NODE_ENV=production
-ENV ASSETS_PRECOMPILE=1
-ENV SECRET_KEY_BASE=1
-
-RUN echo "pass1" > /app/config/master.key
-RUN rails assets:precompile
-
-ENV RAILS_LOG_TO_STDOUT=enabled
-ENV RAILS_SERVE_STATIC_FILES=enabled
-

@@ -1,7 +1,7 @@
 icon: https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-line/254000/01-512.png
 deploy:
-  - make build-dev
-  - make build-prod
+  - okteto build -t okteto.dev/rails-k8s-demo:pro
+  - okteto build -f Dockerfile.dev -t okteto.dev/rails-k8s-demo:dev
   - helm upgrade chat chart --install
 devs:
   - okteto.yml
