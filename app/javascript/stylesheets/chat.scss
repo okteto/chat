@@ -1,0 +1,50 @@
+#chat {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  #navbar-container {
+    flex: auto;
+  }
+
+  #messages-container {
+    height: 80vh;
+    flex: auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #chat-controls-container {
+    flex: auto;
+  }
+}
+
+.message-box {
+  width: fit-content;
+}
+
+.preview-box {
+  max-width: 500px;
+}
+
+// Disable these elements on xs screens:
+
+#chat-submit {
+  display: none;
+}
+
+#chat-title {
+  display: none;
+}
+
+// ===================================
+
+@media (min-width: 576px) {
+  #chat-submit {
+    display: inline;
+  }
+
+  #chat-title {
+    display: inline;
+  }
+}

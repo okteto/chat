@@ -1,0 +1,7 @@
+icon: https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-line/254000/01-512.png
+deploy:
+  - make build-dev
+  - make build-prod
+  - helm upgrade chat chart --install
+devs:
+  - okteto.yml

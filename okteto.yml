@@ -1,0 +1,6 @@
+name: rails-k8s-demo-rails
+image: okteto.dev/rails-k8s-demo:dev
+command: bash
+workdir: /app
+forward:
+  - 1234:1234
