@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rails
+  name: web
 spec:
   replicas: {{ .Values.rails.replicaCount }}
   selector:
@@ -12,7 +12,6 @@ spec:
       labels:
         app.kubernetes.io/component: web
     spec:
-      serviceAccountName: {{ include "rails-k8s-demo.serviceAccountName" . }}
       containers:
         - name: chat
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

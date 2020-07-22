@@ -6,5 +6,5 @@ metadata:
     helm.sh/hook: pre-upgrade, pre-install
     helm.sh/hook-weight: "-1"
 data:
-  DATABASE_URL: postgresql://okteto:okteto@postgresql:5432/okteto
-  REDIS_URL: redis://rails-k8s-demo-redis-master:6379/
+  DATABASE_URL: postgresql://okteto:okteto@db:5432/okteto
+  REDIS_URL: redis://redis:6379/

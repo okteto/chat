@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "rails-k8s-demo.fullname" . }}-sidekiq
+  name: sidekiq
 spec:
   replicas: {{ .Values.sidekiq.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/component: background
+      app.kubernetes.io/component: sidekiq
   template:
     metadata:
       labels:
-        app.kubernetes.io/component: background
+        app.kubernetes.io/component: sidekiq
     spec:
       containers:
-        - name: chat
+        - name: sidekiq
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           ports:
             - name: sidekiqalive

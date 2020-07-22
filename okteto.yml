@@ -1,4 +1,4 @@
-name: rails
+name: web
 image: okteto.dev/rails-k8s-demo:dev
 command: bash
 workdir: /app

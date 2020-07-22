@@ -7,10 +7,3 @@ rails:
 
 sidekiq:
   replicaCount: 1
-
-redis:
-  cluster:
-    enabled: false
-  usePassword: false
-  master:
-    disableCommands: []
