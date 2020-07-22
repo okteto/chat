@@ -1,4 +1,3 @@
-# syntax=docker/dockerfile:experimental
 FROM quay.io/lewagon/rails-base-chrome-imagemagick:dev
 
 RUN apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get -yq dist-upgrade && \
@@ -24,7 +23,7 @@ ENV PATH=/app/bin:$BUNDLE_BIN:$PATH
 
 COPY Gemfile Gemfile.lock ./
 
-RUN --mount=type=cache,target=$BUNDLE_PATH gem install bundler:$BUNDLER_VERSION && \
+RUN gem install bundler:$BUNDLER_VERSION && \
   bundle config set deployment 'true' && \
   bundle config set without 'development test' && \
   bundle install
@@ -48,6 +47,6 @@ ENV RAILS_SERVE_STATIC_FILES=enabled
 COPY package.json yarn.lock ./
 
 RUN echo "pass1" > /app/config/master.key
-RUN rails assets:precompile && rm -rf node_modules tmp/cache vendor/assets test
+RUN rails assets:precompile && rm -rf node_modules tmop/cache vendor/assets test
 
 EXPOSE 3000
