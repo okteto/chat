@@ -1,31 +1,17 @@
 name: web
-image:
-  name: okteto.dev/rails-k8s-demo:dev
-  dockerfile: Dockerfile.dev
-environment:
-  - NODE_ENV=development
-  - RAILS_ENV=development
-  # - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
-  # - BOOTSNAP_CACHE_DIR=/usr/local/bundle/bootsnap
-  # - WEBPACKER_DEV_SERVER_HOST=webpacker
-  # - WEB_CONCURRENCY=1
-  # - HISTFILE=/app/log/.bash_history
-  # - PSQL_HISTFILE=/app/log/.psql_history
+image: okteto.dev/rails-k8s-demo:dev
 command: bash
 workdir: /app
+forward:
+  - 1234:1234
+  - 5234:db:5234
+resources:
+  limits:
+    cpu: 1
+    memory: 2Gi
 services:
   - name: sidekiq
     image: okteto.dev/rails-k8s-demo:dev
-    environment:
-      - NODE_ENV=development
-      - RAILS_ENV=development
     mountpath: /app
-forward:
-  - 3035:3035
-  - 1234:1234
-resources:
-  limits:
-    cpu: 2
-    memory: 4Gi
 persistentVolume:
   enabled: true

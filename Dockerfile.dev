@@ -1,10 +1,6 @@
 # syntax=docker/dockerfile:experimental
 FROM quay.io/lewagon/rails-base-chrome-imagemagick:dev
 
-ENV BUNDLER_VERSION=2.1.0
-
-COPY bashrc /root/.bashrc
-
 RUN apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get -yq dist-upgrade && \
   DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
   libidn11-dev && \
@@ -12,23 +8,26 @@ RUN apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get -yq dist-upgrad
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
   truncate -s 0 /var/log/*log
 
-# Configure bundler
-ENV LANG=C.UTF-8 \
-  BUNDLE_JOBS=4 \
-  BUNDLE_RETRY=3
-
-ENV PATH /app/bin:$PATH
-
 WORKDIR /app
 
-COPY Gemfile Gemfile.lock ./
+COPY bashrc /root/.bashrc
 
-RUN --mount=type=cache,target=/bundler gem update --system && \
-    gem install bundler:$BUNDLER_VERSION && \
-    bundle install
+ENV BUNDLER_VERSION=2.1.0
+ENV NODE_ENV=development
+ENV RAILS_ENV=development
+ENV RAILS_LOG_TO_STDOUT=true
+ENV RAILS_ROOT=/app
 
-COPY package.json yarn.lock ./
+ENV GEM_HOME=/app/.bundle
+ENV BUNDLE_PATH=$GEM_HOME
+ENV BUNDLE_USER_HOME=$GEM_HOME
+ENV BUNDLE_APP_CONFIG=$BUNDLE_PATH
+ENV BUNDLE_BIN=$BUNDLE_PATH/bin
+ENV BOOTSNAP_CACHE_DIR=/app/.bundle/bootsnap
+ENV YARN_CACHE_FOLDER=/app/.cache/yarn/
+ENV LANG=C.UTF-8
+ENV BUNDLE_JOBS=4
+ENV BUNDLE_RETRY=3
+ENV PATH=/app/bin:$BUNDLE_BIN:$PATH
 
-RUN yarn install
-
-COPY . ./
+RUN gem install bundler:$BUNDLER_VERSION
