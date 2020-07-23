@@ -1,17 +1,13 @@
 name: web
-image: okteto.dev/chat:dev
+image: okteto/chat:dev
 command: bash
 workdir: /app
 forward:
   - 1234:1234
   - 5234:db:5234
-resources:
-  limits:
-    cpu: 1
-    memory: 2Gi
 services:
   - name: sidekiq
-    image: okteto.dev/chat:dev
+    image: okteto/chat:dev
     mountpath: /app
 persistentVolume:
   enabled: true

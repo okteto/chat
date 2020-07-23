@@ -28,3 +28,7 @@ spec:
           envFrom:
           - configMapRef:
               name: common-env
+          resources:
+            limits:
+              cpu: 1
+              memory: 2Gi
