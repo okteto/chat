@@ -1,7 +1,7 @@
 name: web
 image: okteto/chat:dev
 command: bash
-workdir: /app
+mountpath: /app
 forward:
   - 1234:1234
   - 5234:db:5234
