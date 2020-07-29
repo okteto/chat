@@ -1,4 +1,4 @@
-icon: https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-line/254000/01-512.png
+icon: https://github.com/okteto/chat/raw/master/icon.png
 deploy:
   - kubectl apply -f dev
   - okteto build -t okteto.dev/chat:$OKTETO_GIT_COMMIT
