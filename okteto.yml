@@ -1,13 +1,13 @@
 name: web
 image: okteto/chat:dev
 command: bash
-mountpath: /app
-forward:
-  - 1234:1234
-  - 5234:db:5234
+sync:
+  - .:/app
 services:
   - name: sidekiq
     image: okteto/chat:dev
-    mountpath: /app
-persistentVolume:
-  enabled: true
+    sync:
+      - .:/app
+forward:
+  - 1234:1234
+  - 5234:db:5234

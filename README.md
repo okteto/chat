@@ -1,8 +1,16 @@
 # Rails on Okteto Demo
 
+## Prerequisites
+
+- Okteto CLI >= 1.8.17. Follow this [guide](/docs/getting-started/installation) to upgrade to the latest version.
+
+## Deploy
+
 Deploy the **Chat App** on Okteto by clicking the following button:
 
 [![Develop on Okteto](https://okteto.com/develop-okteto.svg)](https://cloud.okteto.com/deploy?repository=https://github.com/okteto/chat)
+
+## Develop
 
 Once your app is **Running**, execute the following command to activate your development container:
 
