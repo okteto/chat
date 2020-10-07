@@ -11,3 +11,5 @@ services:
 forward:
   - 1234:1234
   - 5234:db:5234
+environment:
+  - RAILS_ENV=development
