@@ -1,7 +1,7 @@
 icon: https://github.com/okteto/chat/raw/master/icon.png
 deploy:
-  - okteto build -t okteto.dev/chat:$OKTETO_GIT_COMMIT
   - kubectl apply -f dev
+  - okteto build -t okteto.dev/chat:$OKTETO_GIT_COMMIT
   - helm upgrade chat chart --install --set image.tag=$OKTETO_GIT_COMMIT
 devs:
   - okteto.yml
