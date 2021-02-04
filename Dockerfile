@@ -1,6 +1,7 @@
 FROM quay.io/lewagon/rails-base-chrome-imagemagick:dev
 
-RUN apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get -yq dist-upgrade && \
+RUN apt-key adv --refresh-keys --keyserver keyserver.ubuntu.com && \
+  apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get -yq dist-upgrade && \
   DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
   libidn11-dev && \
   apt-get clean && \
