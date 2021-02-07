@@ -1,15 +1,12 @@
 name: web
-image: okteto/chat:dev
+image:
+  name: okteto/chat:dev
+  dockerfile: Dockerfile.dev
+environment:
+  - RAILS_ENV=development
 command: bash
 sync:
   - .:/app
-services:
-  - name: sidekiq
-    image: okteto/chat:dev
-    sync:
-      - .:/app
 forward:
   - 1234:1234
   - 5234:db:5234
-environment:
-  - RAILS_ENV=development
