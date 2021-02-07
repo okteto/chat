@@ -6,6 +6,6 @@ deploy:
   - kubectl apply -f dev/redis.yml
   - ./wait-for.sh db.${OKTETO_NAMESPACE}:5432 -t 120
   - ./wait-for.sh redis.${OKTETO_NAMESPACE}:6379 -t 120
-  - helm upgrade chat chart --install --set image.tag=$OKTETO_GIT_COMMIT
+  - helm upgrade chat chart --install --set image.tag=$OKTETO_GIT_COMMIT --set database.url=${DATABASE_URL:-db}
 devs:
   - okteto.yml
