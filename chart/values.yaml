@@ -7,3 +7,8 @@ rails:
 
 sidekiq:
   replicaCount: 1
+
+database:
+  url: db
+  username: okteto
+  password: okteto

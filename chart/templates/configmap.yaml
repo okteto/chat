@@ -6,5 +6,5 @@ metadata:
     helm.sh/hook: pre-upgrade, pre-install
     helm.sh/hook-weight: "-1"
 data:
-  DATABASE_URL: postgresql://okteto:okteto@db:5432/okteto
+  DATABASE_URL: "postgresql://{{ .Values.database.username }}:{{ .Values.database.password }}@{{ .Values.database.url }}:5432/okteto"
   REDIS_URL: redis://redis:6379/
