@@ -35,7 +35,11 @@ services:
     environment:
       - DATABASE_URL=postgresql://okteto:okteto@db:5432/okteto
       - REDIS_URL=redis://redis:6379/
-    command: rails server -b 0.0.0.0
+    command:
+      - rails
+      - server
+      - "-b"
+      - "0.0.0.0"
     resources:
       cpu: 1
       memory: 2Gi
@@ -48,4 +52,9 @@ services:
     environment:
       - DATABASE_URL=postgresql://okteto:okteto@db:5432/okteto
       - REDIS_URL=redis://redis:6379/
-    command: bundle exec sidekiq -C config/sidekiq.yml
+    command:
+      - bundle
+      - exec
+      - sidekiq
+      - "-C"
+      - config/sidekiq.yml
