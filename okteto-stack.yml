@@ -1,0 +1,51 @@
+name: chat
+services:
+  redis:
+    image: redis:alpine
+    ports:
+      - 6379
+    volumes:
+      - /data
+
+  db:
+    image: postgres:9.4
+    ports:
+      - 5432
+    volumes:
+      - /var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=okteto
+      - POSTGRES_PASSWORD=okteto
+      - POSTGRES_DB=okteto
+
+  db-prepare:
+    build:
+      context: .
+    environment:
+      - DATABASE_URL=postgresql://okteto:okteto@db:5432/okteto
+      - REDIS_URL=redis://redis:6379/
+    command: bash -c "bundle exec rails db:prepare && tail -f /dev/null"
+
+  web:
+    build:
+      context: .
+    public: true
+    ports:
+      - 3000
+    environment:
+      - DATABASE_URL=postgresql://okteto:okteto@db:5432/okteto
+      - REDIS_URL=redis://redis:6379/
+    command: rails server -b 0.0.0.0
+    resources:
+      cpu: 1
+      memory: 2Gi
+
+  sidekiq:
+    build:
+      context: .
+    ports:
+      - 7433
+    environment:
+      - DATABASE_URL=postgresql://okteto:okteto@db:5432/okteto
+      - REDIS_URL=redis://redis:6379/
+    command: bundle exec sidekiq -C config/sidekiq.yml
