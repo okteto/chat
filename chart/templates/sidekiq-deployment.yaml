@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: sidekiq
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: "{{ .Values.image }}"
           ports:
             - name: sidekiqalive
               containerPort: 7433

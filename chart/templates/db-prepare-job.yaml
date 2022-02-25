@@ -12,7 +12,7 @@ spec:
       restartPolicy: Never
       containers:
       - name: db-prepare
-        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        image: {{ .Values.image }}
         command:
           - bundle
           - exec
