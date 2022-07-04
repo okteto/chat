@@ -1,6 +1,4 @@
 image:
-  repository: okteto.dev/chat
-  tag: prod
 
 rails:
   replicaCount: 1

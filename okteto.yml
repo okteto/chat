@@ -1,12 +1,23 @@
-name: web
-image:
-  name: okteto/chat:dev
-  dockerfile: Dockerfile.dev
-environment:
-  - RAILS_ENV=development
-command: bash
-sync:
-  - .:/app
-forward:
-  - 1234:1234
-  - 5234:db:5234
+icon: https://github.com/okteto/chat/raw/master/icon.png
+build:
+  chat:
+    dockerfile: Dockerfile
+  dev:
+    dockerfile: Dockerfile.dev
+
+deploy:
+  - kubectl apply -f dev/postgres.yml
+  - kubectl apply -f dev/redis.yml
+  - helm upgrade chat chart --install --set image=${OKTETO_BUILD_CHAT_IMAGE}
+
+dev:
+  web:
+    image: ${OKTETO_BUILD_DEV_IMAGE}
+    environment:
+      - RAILS_ENV=development
+    command: ["bash"]
+    sync:
+      - .:/app
+    forward:
+      - 1234:1234
+      - 5234:db:5234
