@@ -1,4 +1,4 @@
-icon: https://github.com/okteto/chat/raw/master/icon.png
+icon: https://github.com/okteto/chat/raw/main/icon.png
 build:
   chat:
     dockerfile: Dockerfile
